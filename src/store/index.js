@@ -7,13 +7,13 @@ Vue.use(VueLocalStorage)
 
 const STORAGE_KEY = 'todos-vuejs'
 const state = {
-  todos: JSON.parse(window.localStorage.getItem(STORAGE_KEY) || '[]')
+  todos: JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
 }
 const getters = {
   todos: state => state.todos
 }
 const mutations = {
-  handleAddTodo: (state,text)  => {
+  handleAddTodoItem: (state,text)  => {
     state.todos.unshift({
       text,
       done: false
@@ -50,7 +50,7 @@ const localStoragePlugin = store => {
   store.subscribe((mutation, {
     todos
   }) => {
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
   })
 }
 export default new Vuex.Store({

@@ -1,5 +1,5 @@
 <template>
-  <li :class="isEditing[index] ? 'todo-item-dis-border':'todo-item'">
+  <li class="cp-todo-item">
     <div 
       v-show="!isEditing[index]" 
       @dblclick="changeToEdit">
@@ -46,15 +46,8 @@ export default {
       editText: ''
     }
   },
-  // watch: {
-  //   'isEditing'(val) {
-  //     if(!val) {
-  //       this.$refs.editInput.focus()
-  //     }
-  //   }
-  // },
   mounted() {
-    this.initEditing
+    this.isEditing[this.index] = false
     this.editText = this.todoItem.text
   },
   methods: {
@@ -68,9 +61,6 @@ export default {
     },
     deleteClick() {
       this.handleDeleteTodo(this.index)
-    },
-    initEditing() {
-      this.isEditing[this.index] = false
     },
     changeToEdit() {
       this.$set(this.isEditing, this.index, true)
@@ -88,52 +78,39 @@ export default {
 }
 </script>
 <style lang="scss">
-.todo-item {
+.cp-todo-item {
   width: 444px;
   padding: 18px 20px 18px 0;
   position: relative;
   font-size: 24px;
-  border-bottom: 1px solid #cccccc;
+  border-bottom: 1px solid $base-box-border-color;
   list-style: none;
   text-align: left;
+  &:last-child {
+    border-bottom: none;
+  }
+  &:hover .close-icon{
+    display: block;
+  }
+  .close-icon {
+    position:absolute;
+    top:25px;
+    right:20px;
+    display: none;
+    cursor: pointer;
+    width:20px;
+    height:20px;
+    background-image: url(/static/close-circle.png) 
+  }
+  .line-through{
+    color: $base-font-gray;
+    text-decoration: line-through;
+  }
+  .edit-input {
+    display: block;
+    width:444px;
+    height:50px;
+    font-size: 24px;
+  }
 }
-.todo-item:last-child {
-  border-bottom: none;
-}
-.todo-item-dis-border {
-  border-bottom: none;
-  padding: 8px 20px 8px 0;
-  width: 444px;
-  position: relative;
-  font-size: 24px;
-  list-style: none;
-  text-align: left;
-}
-.close-icon {
-  position:absolute;
-  top:25px;
-  right:20px;
-  display: none;
-  cursor: pointer;
-  width:20px;
-  height:20px;
-  background-image: url(/static/close-circle.png) 
-}
-.todo-item:hover .close-icon{
-  display: block;
-}
-.line-through{
-  color: #777777;
-  text-decoration: line-through;
-}
-.dis-none {
-  display:none;
-}
-.edit-input {
-  display: block;
-  width:444px;
-  height:50px;
-  font-size: 24px;
-}
-
 </style>

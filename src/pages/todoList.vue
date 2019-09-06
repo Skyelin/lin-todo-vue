@@ -6,13 +6,13 @@
         v-model.trim="newTodo"
         class="todo-input"
         placeholder="请输入计划"
-        @keyup.enter="addTodo"
+        @keyup.enter="addTodoItem"
       >
       <div class="todo-all-check">
         <input 
           v-model="isAllchecked" 
           type="checkbox" 
-          @click="allCheck" 
+          @click="allChecked" 
         >
         全部已完成
       </div>
@@ -28,13 +28,13 @@
         <span class="fl"><b>{{ todoList.length-numDone }}</b>个未完成</span>
         <span 
           class="todo-clear-done" 
-          @click="deleteAll">删除{{ numDone }}个已完成</span>
+          @click="deleteAllItem">删除{{ numDone }}个已完成</span>
       </div>
     </div>
   </div>
 </template>
 <script>
-import todoItem from '../components/todos'
+import todoItem from '../components/todoItem'
 import utils from '../service/util'
 import { mapState, mapMutations } from 'vuex'
 export default {
@@ -48,8 +48,7 @@ export default {
   },
   data() {
     return {
-      newTodo: '',
-      checkedStatus: false
+      newTodo: ''
     }
   },
   computed: {
@@ -78,20 +77,20 @@ export default {
   },
   methods: {
     ...mapMutations([
-      'handleAddTodo',
+      'handleAddTodoItem',
       'handleAllCheck',
       'handleDeleteAll'
     ]),
-    addTodo() {
+    addTodoItem() {
       if (this.newTodo) {
-        this.handleAddTodo(this.newTodo)
+        this.handleAddTodoItem(this.newTodo)
         this.newTodo = ''
       }
     },
-    allCheck() {
+    allChecked() {
       this.handleAllCheck(!this.isAllchecked)
     },
-    deleteAll() {
+    deleteAllItem() {
       this.handleDeleteAll()
     }
   }
@@ -101,14 +100,14 @@ export default {
 .pg-todo-list {
   display: flex;
   justify-content: center;
-  background: #fff;
+  background: $base-background;
   .todo-list-box {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     width: 520px;
-    background: #fff;
-    border:1px solid #eeeeee;
+    background: $base-background;
+    border:1px solid $base-box-border-color;
     .todo-input {
       width: 466px;
       font-size: 24px;
@@ -117,7 +116,7 @@ export default {
       border: 0;
       outline: none;
       padding: 6px;
-      border: 1px solid #999999;
+      border: 1px solid $base-border-gray;
     }
     .todo-all-check {
       width: 466px;
@@ -133,9 +132,9 @@ export default {
     .todo-footer {
       width:480px;
       display: block;
-      color: #555555;
-      background: #f4fce8;
-      border-top: 1px solid #ededed;
+      color: $page-footer-font-color;
+      background: $page-footer-background;
+      border-top: 1px solid $base-box-border-color;
       padding: 0 20px;
       line-height: 37px;
       border-radius: 0 0 5px 5px;
@@ -144,7 +143,7 @@ export default {
         line-height: 20px;
         text-decoration: none;
         background: rgba(0, 0, 0, 0.1);
-        color: #555555;
+        color: $page-footer-font-color;
         font-size: 11px;
         margin-top: 8px;
         margin-bottom: 8px;

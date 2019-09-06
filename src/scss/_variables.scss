@@ -1,35 +1,10 @@
-$base-background:#0A0E5C;
-$layout-header-background:#fff;
-$layout-left-menu-background: #3A455C ;
-$layout-left-menu-background-active: #54627F;
-$layout-header-height: 64px;
-$layout-new-header-height: 48px;
-$layout-footer-height: 36px;
-$menu-open-close-time: .5s;
+$base-background:#fff;
 $main-min-width: 1300px;
-$main-min-header-width: 1124px;
-$layout-z-index: 1001;
-$min-left-nav-width: 90px;
-$min-left-nav-width-addten: $min-left-nav-width + 10;
-$min-settlement-left-nav-width: 110px;
-// $max-left-nav-width: 176px;
-$max-left-nav-width: 216px;
+$base-box-border-color: #ECEEF5;
+$page-footer-font-color:#555555;
+$page-footer-background:#f4fce8;
+$base-border-gray:#999999;
+$base-font-gray:#777777;
 
-// $base-background:#EF5C4A;
-$base-color:#F2270C;
-$base-background:#F2270C;
-
-$font-color:#8C8C8C;
-// $layout-color:#EF5C4A;
-$layout-color:#F2270C;
-//td border color
-$base-td-border-color: #ECEEF5;
-
-$page-border-top-color:#ecedf1;
-
-
-:export {
-  layoutFooterHeight: $layout-footer-height;
-}
 
 
